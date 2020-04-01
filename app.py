@@ -37,12 +37,13 @@ def img():
         filename = request.files['file']
         image = PIL.Image.open(filename)
         width, height = image.size
-        x = width + height
+        response = width + height
     else:
         filename = request.files['file']
         image = PIL.Image.open(filename)
         width, height = image.size
-        response = "<h3>Width: </h3>" + str(width) + "<h3>Height: </h3>" + str(height)
+        response = "<h3>Width: </h3>" + str(width) + "<h3>Height: </h3>" + str(height) + "<h3>Area: </h3>" \
+                   + str(height*width)
 
     return response
 
