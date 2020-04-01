@@ -1,8 +1,12 @@
+from typing import io
+
 import PIL.Image
 import flask
 
 from flask import Flask, request, send_file
+from imageio import imread
 from werkzeug.utils import secure_filename
+import cv2
 
 app = Flask(__name__)
 
@@ -44,8 +48,30 @@ def img():
         width, height = image.size
         filename2 = secure_filename(filename.filename)
 
-        response = "<h3>File name: </h3>" + filename2 + "<h3>Width: </h3>" + str(width) + "<h3>Height: </h3>" + str(height) + "<h3>Area: </h3>" \
-                   + str(height*width)
+        # imgt = PIL.Image.open(r'c:\temp\temp.jpg')
+        filepath = image.filename
+
+        # img = cv2.imread('b.png')
+        # x=str(img.shape)
+
+
+        # image2 = io.imread(filename, plugin='matplotlib')
+        img = cv2.imread('01.jpeg')
+        if (len(img.shape) < 3):
+            x = 'gray'
+            y = str(img.shape)
+        elif len(img.shape) == 3:
+            x = 'Color(RGB)'
+            y = str(img.shape)
+        else:
+            x = 'others'
+            y = str(img.shape)
+
+        response = "<h3>File name: </h3>" + filename2 + \
+                   "<h3>Height & Width: </h3>" + str(height) + ",  " + str(width) + \
+                   "<h3>Area of the image: </h3>" + str(height*width) + \
+                   "<h3>Color: </h3>" + y + ", " + x
+
     return response
 
 
