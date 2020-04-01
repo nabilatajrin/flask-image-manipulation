@@ -42,9 +42,10 @@ def img():
         filename = request.files['file']
         image = PIL.Image.open(filename)
         width, height = image.size
-        response = "<h3>Width: </h3>" + str(width) + "<h3>Height: </h3>" + str(height) + "<h3>Area: </h3>" \
-                   + str(height*width)
+        filename2 = secure_filename(filename.filename)
 
+        response = "<h3>File name: </h3>" + filename2 + "<h3>Width: </h3>" + str(width) + "<h3>Height: </h3>" + str(height) + "<h3>Area: </h3>" \
+                   + str(height*width)
     return response
 
 
