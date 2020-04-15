@@ -8,8 +8,13 @@ from imageio import imread
 from werkzeug.utils import secure_filename
 import cv2
 
+# instantiate/ create the application
 app = Flask(__name__)
 
+
+# route, when someone calls the route the code associated with it will get run
+# an app can handle multiple routs
+# this is also an endpoint. an app can have multiple endpoints.
 # home page
 @app.route('/', methods=["GET", "POST"])
 def home():
