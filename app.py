@@ -1,5 +1,4 @@
 from typing import io
-
 import PIL.Image
 import flask
 import numpy
@@ -11,31 +10,12 @@ import cv2
 
 app = Flask(__name__)
 
-
+# home page
 @app.route('/', methods=["GET", "POST"])
 def home():
-    return "Hello World Rain!"
+    return "Welcome to home page!"
 
-
-# download selected image and forward to processing page
-@app.route("/download", methods=['GET', 'POST'])
-def download():
-    if request.args.get('type') == '1':
-        filename = 'b.png'
-    else:
-        filename = 'b.png'
-    return send_file(filename, mimetype='b/png')
-
-
-# upload selected image and forward to processing page
-@app.route("/upload", methods=['POST'])
-def upload():
-    if request.method == 'POST':
-        f = request.files['file']
-        f.save(secure_filename(f.filename))
-        return 'file uploaded'
-
-
+# check whether an image is new or old based on logic if the image is color or grayscale.
 @app.route("/img", methods=['GET', 'POST'])
 def img():
     filename = request.files['file']
@@ -78,6 +58,28 @@ def img():
                     "<h3>Year: </h3>" + year
 
     return response
+
+
+
+
+# download selected image and forward to processing page
+@app.route("/download", methods=['GET', 'POST'])
+def download():
+    if request.args.get('type') == '1':
+        filename = 'b.png'
+    else:
+        filename = 'b.png'
+    return send_file(filename, mimetype='b/png')
+
+# upload selected image and forward to processing page
+@app.route("/upload", methods=['POST'])
+def upload():
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(secure_filename(f.filename))
+        return 'file uploaded'
+
+
 
 
 if __name__ == '__main__':
