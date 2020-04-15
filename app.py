@@ -68,6 +68,9 @@ def img():
 
 
 # download selected image and forward to processing page
+# there could be different methods on it.
+# method includes the type of requests it is getting sends over
+# ['GET', 'POST'] means it will accept get request and post request.
 @app.route("/download", methods=['GET', 'POST'])
 def download():
     if request.args.get('type') == '1':
@@ -86,6 +89,7 @@ def upload():
 
 
 
-
+# if I call the file directly from the command line I want to execute what follows here
 if __name__ == '__main__':
+    # run the app
     app.run()
