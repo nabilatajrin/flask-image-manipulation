@@ -46,9 +46,9 @@ def img():
         response = width + height
     else:
         filename2 = secure_filename(filename.filename)
-        img = cv2.imread("01.jpeg", 1)
-        rgb = str(img.shape)
-        x=os.getcwd()
+        # img = cv2.imread("01.jpeg", 1)
+        # rgb = str(img.shape)
+        # x=os.getcwd()
 
         for i in range(width):
             for j in range(height):
