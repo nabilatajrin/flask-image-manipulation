@@ -22,10 +22,11 @@ def home():
 @app.route("/img", methods=['GET', 'POST'])
 def img():
     filename = request.files['file']
+    # username = request.__name__['username']
     image = PIL.Image.open(filename)
     width, height = image.size
 
-    filename2 = secure_filename(filename.filename)
+    filename2 = filename.filename
 
     for i in range(width):
         for j in range(height):
