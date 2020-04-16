@@ -26,7 +26,7 @@ def download():
 def upload():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(secure_filename(f.filename))
+        f.save(f.filename)
         return 'file uploaded'
 
 
