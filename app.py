@@ -22,7 +22,7 @@ def home():
 @app.route("/img", methods=['GET', 'POST'])
 def img():
     filename = request.files['file']
-    # username = request.__name__['username']
+    username = request.form['username']
     image = PIL.Image.open(filename)
     width, height = image.size
 
@@ -53,7 +53,8 @@ def img():
     response = "<h3>File name: </h3>" + filename2 + \
                "<h3>Height & Width: </h3>" + str(height) + "px,  " + str(width) + "px" + \
                "<h3>Color: </h3>" + color + \
-                "<h3>Year: </h3>" + year
+                "<h3>Year: </h3>" + year + \
+                "<h3>Username: </h3>" + username
 
     return response
 
